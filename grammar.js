@@ -2,6 +2,14 @@ const
   PREC = {
     for_expr: 5,
     object_elem: 2,
+
+    unary: 7,
+    multiplicative: 6,
+    additive: 5,
+    comparative: 4,
+    equal: 3,
+    and: 2,
+    or: 1,
   },
 
   newline = '\n',
@@ -36,7 +44,51 @@ module.exports = grammar({
     // );
     expression: $ => choice(
       $.expr_term,
+      $.operation,
+      $.conditional,
     ),
+
+    // Conditional = Expression "?" Expression ":" Expression;
+    conditional: $ => prec.left(seq(
+      $.expression,
+      '?',
+      $.expression,
+      ':',
+      $.expression,
+    )),
+
+    // Operation = unaryOp | binaryOp;
+    // unaryOp = ("-" | "!") ExprTerm;
+    // binaryOp = ExprTerm binaryOperator ExprTerm;
+    // binaryOperator = compareOperator | arithmeticOperator | logicOperator;
+    // compareOperator = "==" | "!=" | "<" | ">" | "<=" | ">=";
+    // arithmeticOperator = "+" | "-" | "*" | "/" | "%";
+    // logicOperator = "&&" | "||" | "!";
+    operation: $ => choice($.unary_op, $.binary_op),
+
+    unary_op: $ => prec(PREC.unary, seq(
+      choice('-', '!'),
+      $.expr_term,
+    )),
+
+    binary_op: $ => {
+      const table = [
+        [PREC.multiplicative, choice('*', '/', '%')],
+        [PREC.additive, choice('+', '-')],
+        [PREC.comparative, choice('>', '>=', '<', '<=')],
+        [PREC.equal, choice('==', '!=')],
+        [PREC.and, '&&'],
+        [PREC.or, '||'],
+      ];
+
+      return choice(...table.map(([precedence, operator]) =>
+        prec.left(precedence, seq(
+          field('left', $.expression),
+          field('operator', operator),
+          field('right', $.expression)
+        ))
+      ));
+    },
 
     // ExprTerm = (
     //    LiteralValue |
