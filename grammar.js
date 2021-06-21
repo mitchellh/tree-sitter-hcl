@@ -1,4 +1,9 @@
 const
+  PREC = {
+    for_expr: 5,
+    object_elem: 2,
+  },
+
   newline = '\n',
   terminator = choice(newline),
 
@@ -51,12 +56,49 @@ module.exports = grammar({
       // TemplateExpr
       $.variable_expr,
       $.function_call,
-      // ForExpr
+      $.for_expr,
       seq($.expr_term, $.index),
       seq($.expr_term, $.get_attr),
       seq($.expr_term, $.splat),
       seq('(', $.expression, ')'),
     ),
+
+    // ForExpr = forTupleExpr | forObjectExpr;
+    // forTupleExpr = "[" forIntro Expression forCond? "]";
+    // forObjectExpr = "{" forIntro Expression "=>" Expression "..."? forCond? "}";
+    // forIntro = "for" Identifier ("," Identifier)? "in" Expression ":";
+    // forCond = "if" Expression;
+    for_expr: $ => choice($._for_tuple, $._for_object),
+
+    _for_tuple: $ => seq(
+      '[',
+      $.for_intro,
+      $.expression,
+      optional($.for_cond),
+      ']',
+    ),
+
+    _for_object: $ => seq(
+      '{',
+      $.for_intro,
+      $.expression,
+      '=>',
+      $.expression,
+      optional('...'),
+      optional($.for_cond),
+      '}',
+    ),
+
+    for_intro: $ => seq(
+      'for',
+      $.identifier,
+      optional(seq(',', $.identifier)),
+      'in',
+      $.expression,
+      ':',
+    ),
+
+    for_cond: $ => seq('if', $.expression),
 
     // LiteralValue = (
     //  NumericLit |
@@ -117,14 +159,14 @@ module.exports = grammar({
       '}',
     ),
 
-    object_elem: $ => prec(5, seq(
+    object_elem: $ => seq(
       choice($.identifier, $.expression),
       choice('=', ':'),
       $.expression,
-    )),
+    ),
 
     // VariableExpr = Identifier;
-    variable_expr: $ => $.identifier,
+    variable_expr: $ => prec.right($.identifier),
 
     // FunctionCall = Identifier "(" arguments ")";
     // Arguments = (

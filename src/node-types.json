@@ -58,6 +58,10 @@
           "named": true
         },
         {
+          "type": "for_expr",
+          "named": true
+        },
+        {
           "type": "function_call",
           "named": true
         },
@@ -94,6 +98,63 @@
       "types": [
         {
           "type": "expr_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_cond",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "for_cond",
+          "named": true
+        },
+        {
+          "type": "for_intro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_intro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -344,6 +405,10 @@
     "named": false
   },
   {
+    "type": "=>",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -356,8 +421,20 @@
     "named": true
   },
   {
+    "type": "for",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "in",
+    "named": false
   },
   {
     "type": "null",
