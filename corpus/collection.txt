@@ -1,0 +1,89 @@
+================================================================================
+empty tuple
+================================================================================
+
+foo = []
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (collection_value
+          (tuple))))))
+
+================================================================================
+tuple with values
+================================================================================
+
+foo = [42,]
+bar = [1,2,3,4]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (collection_value
+          (tuple
+            (expression
+              (expr_term
+                (literal_value
+                  (numeric_literal)))))))))
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (collection_value
+          (tuple
+            (expression
+              (expr_term
+                (literal_value
+                  (numeric_literal))))
+            (expression
+              (expr_term
+                (literal_value
+                  (numeric_literal))))
+            (expression
+              (expr_term
+                (literal_value
+                  (numeric_literal))))
+            (expression
+              (expr_term
+                (literal_value
+                  (numeric_literal))))))))))
+
+================================================================================
+object with values
+================================================================================
+
+foo = {
+    a = 42,
+    b: 24
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (collection_value
+          (object
+            (object_elem
+              (identifier)
+              (expression
+                (expr_term
+                  (literal_value
+                    (numeric_literal)))))
+            (object_elem
+              (identifier)
+              (expression
+                (expr_term
+                  (literal_value
+                    (numeric_literal)))))))))))

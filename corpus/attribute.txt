@@ -1,0 +1,122 @@
+================================================================================
+attribute
+================================================================================
+
+foo = true
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (true))))))
+
+================================================================================
+attribute with hyphen id
+================================================================================
+
+foo-bar = true
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (true))))))
+
+================================================================================
+attribute variable value
+================================================================================
+
+foo = bar
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (variable_expr
+          (identifier))))))
+
+================================================================================
+index
+================================================================================
+
+foo = bar[0]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (expr_term
+          (variable_expr
+            (identifier)))
+        (index
+          (expression
+            (expr_term
+              (literal_value
+                (numeric_literal)))))))))
+
+================================================================================
+getattr
+================================================================================
+
+foo = node.os.name
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (expr_term
+          (expr_term
+            (variable_expr
+              (identifier)))
+          (get_attr
+            (identifier)))
+        (get_attr
+          (identifier))))))
+
+================================================================================
+splat
+================================================================================
+
+foo = node.*
+bar = node.*.name
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (expr_term
+          (variable_expr
+            (identifier)))
+        (splat
+          (splat_attr)))))
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (expr_term
+          (variable_expr
+            (identifier)))
+        (splat
+          (splat_attr
+            (get_attr
+              (identifier))))))))

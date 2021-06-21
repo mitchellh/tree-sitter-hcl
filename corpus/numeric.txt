@@ -1,0 +1,68 @@
+================================================================================
+integer
+================================================================================
+
+foo = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (numeric_literal))))))
+
+================================================================================
+decimal
+================================================================================
+
+foo = 42.12
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (numeric_literal))))))
+
+================================================================================
+exponent
+================================================================================
+
+foo = 42e12
+foo = 42e+12
+foo = 42e-12
+foo = 42E-12
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (numeric_literal)))))
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (numeric_literal)))))
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (numeric_literal)))))
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (numeric_literal))))))
