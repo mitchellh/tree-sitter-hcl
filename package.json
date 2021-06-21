@@ -1,0 +1,31 @@
+{
+  "name": "tree-sitter-hcl",
+  "version": "0.1.0",
+  "description": "A tree-sitter grammar for HCL (HashiCorp Configuration Language)",
+  "main": "bindings/node",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test",
+    "test-windows": "tree-sitter test"
+  },
+  "keywords": [
+    "tree-sitter",
+    "hcl"
+  ],
+  "author": "Mitchell Hashimoto <xmitchx@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.14.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.19.1"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.hcl",
+      "file-types": [
+        "hcl"
+      ]
+    }
+  ]
+}
