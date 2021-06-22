@@ -4,9 +4,9 @@
 
 (body (attribute (identifier) @type))
 
-(attribute (identifier) @property)
-(block (identifier) @property)
-(one_line_block (identifier) @property)
+(attribute (identifier) @type)
+(block (identifier) @type)
+(one_line_block (identifier) @type)
 
 [
   (string_literal)
