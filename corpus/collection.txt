@@ -90,3 +90,35 @@ foo = {
                   (expr_term
                     (literal_value
                       (numeric_literal))))))))))))
+
+================================================================================
+object with no comma
+================================================================================
+
+foo = {
+    a = 42
+    b = 24
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (body
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (collection_value
+            (object
+              (object_elem
+                (identifier)
+                (expression
+                  (expr_term
+                    (literal_value
+                      (numeric_literal)))))
+              (object_elem
+                (identifier)
+                (expression
+                  (expr_term
+                    (literal_value
+                      (numeric_literal))))))))))))

@@ -272,7 +272,7 @@ module.exports = grammar({
       '[',
       optional(seq(
         $.expression,
-        repeat(seq(',',$.expression)),
+        repeat(seq(',', $.expression)),
         optional(','),
       )),
       ']',
@@ -282,8 +282,11 @@ module.exports = grammar({
       '{',
       optional(seq(
         $.object_elem,
-        repeat(seq(',',$.object_elem)),
-        optional(','),
+        repeat(seq(
+          choice(',', terminator),
+          $.object_elem,
+        )),
+        optional(choice(',', terminator)),
       )),
       '}',
     ),
