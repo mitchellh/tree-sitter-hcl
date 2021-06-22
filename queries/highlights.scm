@@ -8,6 +8,8 @@
 (block (identifier) @type)
 (one_line_block (identifier) @type)
 
+(function_call (identifier) @function)
+
 [
   (string_literal)
   (quoted_template)
