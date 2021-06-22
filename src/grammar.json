@@ -471,6 +471,10 @@
         {
           "type": "SYMBOL",
           "name": "quoted_template"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "heredoc"
         }
       ]
     },
@@ -1237,7 +1241,12 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "heredoc"
+    }
+  ],
   "inline": [],
   "supertypes": []
 }

@@ -15,10 +15,14 @@ foo = "foo!"
           (quoted_template))))))
 
 ================================================================================
-nested
+heredoc
 ================================================================================
 
-foo = bar ? true : baz ? 1 : 2
+foo = <<FOO
+Hello!
+FOO
+
+bar = 42
 
 --------------------------------------------------------------------------------
 
@@ -26,26 +30,12 @@ foo = bar ? true : baz ? 1 : 2
   (attribute
     (identifier)
     (expression
-      (conditional
-        (expression
-          (conditional
-            (expression
-              (expr_term
-                (variable_expr
-                  (identifier))))
-            (expression
-              (expr_term
-                (literal_value
-                  (true))))
-            (expression
-              (expr_term
-                (variable_expr
-                  (identifier))))))
-        (expression
-          (expr_term
-            (literal_value
-              (numeric_literal))))
-        (expression
-          (expr_term
-            (literal_value
-              (numeric_literal))))))))
+      (expr_term
+        (template_expr
+          (heredoc)))))
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (literal_value
+          (numeric_literal))))))

@@ -25,6 +25,10 @@ const
 module.exports = grammar({
   name: 'hcl',
 
+  externals: $ => [
+    $.heredoc,
+  ],
+
   rules: {
     source_file: $ => repeat(choice(
       seq($.attribute, terminator),
@@ -122,13 +126,13 @@ module.exports = grammar({
     //     (content as defined in prose above)
     //     Identifier Newline
     // );
-    template_expr: $ => choice($.quoted_template),
+    template_expr: $ => choice($.quoted_template, $.heredoc),
 
     quoted_template: $ => seq(
       '"',
       repeat(choice(
         token.immediate(prec(1, /[^"\n\\]+/)),
-        $.escape_sequence
+        $.escape_sequence,
       )),
       '"'
     ),

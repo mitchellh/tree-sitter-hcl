@@ -492,6 +492,10 @@
       "required": true,
       "types": [
         {
+          "type": "heredoc",
+          "named": true
+        },
+        {
           "type": "quoted_template",
           "named": true
         }
@@ -658,6 +662,10 @@
   {
     "type": "for",
     "named": false
+  },
+  {
+    "type": "heredoc",
+    "named": true
   },
   {
     "type": "identifier",
