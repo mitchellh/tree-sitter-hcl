@@ -53,7 +53,7 @@ module.exports = grammar({
       )),
       '{',
       terminator,
-      $.body,
+      optional($.body),
       '}',
       terminator,
     ),
