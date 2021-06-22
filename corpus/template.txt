@@ -1,0 +1,51 @@
+================================================================================
+string
+================================================================================
+
+foo = "foo!"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (expr_term
+        (template_expr
+          (quoted_template))))))
+
+================================================================================
+nested
+================================================================================
+
+foo = bar ? true : baz ? 1 : 2
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (attribute
+    (identifier)
+    (expression
+      (conditional
+        (expression
+          (conditional
+            (expression
+              (expr_term
+                (variable_expr
+                  (identifier))))
+            (expression
+              (expr_term
+                (literal_value
+                  (true))))
+            (expression
+              (expr_term
+                (variable_expr
+                  (identifier))))))
+        (expression
+          (expr_term
+            (literal_value
+              (numeric_literal))))
+        (expression
+          (expr_term
+            (literal_value
+              (numeric_literal))))))))

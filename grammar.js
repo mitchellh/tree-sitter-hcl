@@ -105,7 +105,7 @@ module.exports = grammar({
     expr_term: $ => choice(
       $.literal_value,
       $.collection_value,
-      // TemplateExpr
+      $.template_expr,
       $.variable_expr,
       $.function_call,
       $.for_expr,
@@ -114,6 +114,35 @@ module.exports = grammar({
       seq($.expr_term, $.splat),
       seq('(', $.expression, ')'),
     ),
+
+    // TemplateExpr = quotedTemplate | heredocTemplate;
+    // quotedTemplate = (as defined in prose above);
+    // heredocTemplate = (
+    //     ("<<" | "<<-") Identifier Newline
+    //     (content as defined in prose above)
+    //     Identifier Newline
+    // );
+    template_expr: $ => choice($.quoted_template),
+
+    quoted_template: $ => seq(
+      '"',
+      repeat(choice(
+        token.immediate(prec(1, /[^"\n\\]+/)),
+        $.escape_sequence
+      )),
+      '"'
+    ),
+
+    escape_sequence: $ => token.immediate(seq(
+      '\\',
+      choice(
+        /[^xuU]/,
+        /\d{2,3}/,
+        /x[0-9a-fA-F]{2,}/,
+        /u[0-9a-fA-F]{4}/,
+        /U[0-9a-fA-F]{8}/
+      )
+    )),
 
     // ForExpr = forTupleExpr | forObjectExpr;
     // forTupleExpr = "[" forIntro Expression forCond? "]";
