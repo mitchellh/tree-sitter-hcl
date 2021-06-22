@@ -2,9 +2,9 @@
   "for"
 ] @keyword
 
-(body (attribute (identifier) @type))
+(attribute (identifier) @property)
+(object_elem (identifier) @property)
 
-(attribute (identifier) @type)
 (block (identifier) @type)
 (one_line_block (identifier) @type)
 
