@@ -7,28 +7,29 @@ foo = [for s in var.list : upper(s)]
 --------------------------------------------------------------------------------
 
 (source_file
-  (attribute
-    (identifier)
-    (expression
-      (expr_term
-        (for_expr
-          (for_intro
-            (identifier)
-            (expression
-              (expr_term
+  (body
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (for_expr
+            (for_intro
+              (identifier)
+              (expression
                 (expr_term
-                  (variable_expr
-                    (identifier)))
-                (get_attr
-                  (identifier)))))
-          (expression
-            (expr_term
-              (function_call
-                (identifier)
-                (expression
                   (expr_term
                     (variable_expr
-                      (identifier))))))))))))
+                      (identifier)))
+                  (get_attr
+                    (identifier)))))
+            (expression
+              (expr_term
+                (function_call
+                  (identifier)
+                  (expression
+                    (expr_term
+                      (variable_expr
+                        (identifier)))))))))))))
 
 ================================================================================
 tuple (kv)
@@ -39,29 +40,30 @@ foo = [for k, v in var.map : length(k)]
 --------------------------------------------------------------------------------
 
 (source_file
-  (attribute
-    (identifier)
-    (expression
-      (expr_term
-        (for_expr
-          (for_intro
-            (identifier)
-            (identifier)
-            (expression
-              (expr_term
+  (body
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (for_expr
+            (for_intro
+              (identifier)
+              (identifier)
+              (expression
                 (expr_term
-                  (variable_expr
-                    (identifier)))
-                (get_attr
-                  (identifier)))))
-          (expression
-            (expr_term
-              (function_call
-                (identifier)
-                (expression
                   (expr_term
                     (variable_expr
-                      (identifier))))))))))))
+                      (identifier)))
+                  (get_attr
+                    (identifier)))))
+            (expression
+              (expr_term
+                (function_call
+                  (identifier)
+                  (expression
+                    (expr_term
+                      (variable_expr
+                        (identifier)))))))))))))
 
 ================================================================================
 object
@@ -72,29 +74,30 @@ foo = {for s in var.list : s => upper(s)}
 --------------------------------------------------------------------------------
 
 (source_file
-  (attribute
-    (identifier)
-    (expression
-      (expr_term
-        (for_expr
-          (for_intro
-            (identifier)
-            (expression
-              (expr_term
+  (body
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (for_expr
+            (for_intro
+              (identifier)
+              (expression
                 (expr_term
-                  (variable_expr
-                    (identifier)))
-                (get_attr
-                  (identifier)))))
-          (expression
-            (expr_term
-              (variable_expr
-                (identifier))))
-          (expression
-            (expr_term
-              (function_call
-                (identifier)
-                (expression
                   (expr_term
                     (variable_expr
-                      (identifier))))))))))))
+                      (identifier)))
+                  (get_attr
+                    (identifier)))))
+            (expression
+              (expr_term
+                (variable_expr
+                  (identifier))))
+            (expression
+              (expr_term
+                (function_call
+                  (identifier)
+                  (expression
+                    (expr_term
+                      (variable_expr
+                        (identifier)))))))))))))

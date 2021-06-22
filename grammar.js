@@ -30,15 +30,52 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => repeat(choice(
-      seq($.attribute, terminator),
+    source_file: $ => $.body,
+
+    // Body         = (Attribute | Block | OneLineBlock)*;
+    body: $ => repeat1(choice(
+      $.attribute,
+      $.block,
+      $.one_line_block,
     )),
+
+    // Block = Identifier (StringLit|Identifier)* "{" Newline Body "}" Newline;
+    block: $ => seq(
+      $.identifier,
+      repeat(choice(
+        $.string_literal,
+        $.identifier,
+      )),
+      '{',
+      terminator,
+      $.body,
+      '}',
+      terminator,
+    ),
+
+    // OneLineBlock = Identifier (StringLit|Identifier)* "{" (Identifier "=" Expression)? "}" Newline;
+    one_line_block: $ => seq(
+      $.identifier,
+      repeat(choice(
+        $.string_literal,
+        $.identifier,
+      )),
+      '{',
+      optional(seq(
+        $.identifier,
+        '=',
+        $.expression,
+      )),
+      '}',
+      terminator,
+    ),
 
     // Attribute    = Identifier "=" Expression Newline;
     attribute:  $ => seq(
       $.identifier,
       '=',
       $.expression,
+      terminator,
     ),
 
     // Expression = (
@@ -136,6 +173,8 @@ module.exports = grammar({
       )),
       '"'
     ),
+
+    string_literal: $ => $.quoted_template,
 
     escape_sequence: $ => token.immediate(seq(
       '\\',

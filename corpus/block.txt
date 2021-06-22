@@ -1,43 +1,41 @@
 ================================================================================
-string
+block
 ================================================================================
 
-foo = "foo!"
+resource "aws_instance" "foo" {
+  a = b
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
   (body
-    (attribute
+    (block
       (identifier)
-      (expression
-        (expr_term
-          (template_expr
-            (quoted_template)))))))
+      (string_literal
+        (quoted_template))
+      (string_literal
+        (quoted_template))
+      (body
+        (attribute
+          (identifier)
+          (expression
+            (expr_term
+              (variable_expr
+                (identifier)))))))))
 
 ================================================================================
-heredoc
+one line block
 ================================================================================
 
-foo = <<FOO
-Hello!
-FOO
-
-bar = 42
+resource aws_instance foo {}
 
 --------------------------------------------------------------------------------
 
 (source_file
   (body
-    (attribute
+    (one_line_block
       (identifier)
-      (expression
-        (expr_term
-          (template_expr
-            (heredoc)))))
-    (attribute
       (identifier)
-      (expression
-        (expr_term
-          (literal_value
-            (numeric_literal)))))))
+      (identifier))))
+

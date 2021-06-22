@@ -7,12 +7,13 @@ foo = []
 --------------------------------------------------------------------------------
 
 (source_file
-  (attribute
-    (identifier)
-    (expression
-      (expr_term
-        (collection_value
-          (tuple))))))
+  (body
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (collection_value
+            (tuple)))))))
 
 ================================================================================
 tuple with values
@@ -24,38 +25,39 @@ bar = [1,2,3,4]
 --------------------------------------------------------------------------------
 
 (source_file
-  (attribute
-    (identifier)
-    (expression
-      (expr_term
-        (collection_value
-          (tuple
-            (expression
-              (expr_term
-                (literal_value
-                  (numeric_literal)))))))))
-  (attribute
-    (identifier)
-    (expression
-      (expr_term
-        (collection_value
-          (tuple
-            (expression
-              (expr_term
-                (literal_value
-                  (numeric_literal))))
-            (expression
-              (expr_term
-                (literal_value
-                  (numeric_literal))))
-            (expression
-              (expr_term
-                (literal_value
-                  (numeric_literal))))
-            (expression
-              (expr_term
-                (literal_value
-                  (numeric_literal))))))))))
+  (body
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (collection_value
+            (tuple
+              (expression
+                (expr_term
+                  (literal_value
+                    (numeric_literal)))))))))
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (collection_value
+            (tuple
+              (expression
+                (expr_term
+                  (literal_value
+                    (numeric_literal))))
+              (expression
+                (expr_term
+                  (literal_value
+                    (numeric_literal))))
+              (expression
+                (expr_term
+                  (literal_value
+                    (numeric_literal))))
+              (expression
+                (expr_term
+                  (literal_value
+                    (numeric_literal)))))))))))
 
 ================================================================================
 object with values
@@ -69,21 +71,22 @@ foo = {
 --------------------------------------------------------------------------------
 
 (source_file
-  (attribute
-    (identifier)
-    (expression
-      (expr_term
-        (collection_value
-          (object
-            (object_elem
-              (identifier)
-              (expression
-                (expr_term
-                  (literal_value
-                    (numeric_literal)))))
-            (object_elem
-              (identifier)
-              (expression
-                (expr_term
-                  (literal_value
-                    (numeric_literal)))))))))))
+  (body
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (collection_value
+            (object
+              (object_elem
+                (identifier)
+                (expression
+                  (expr_term
+                    (literal_value
+                      (numeric_literal)))))
+              (object_elem
+                (identifier)
+                (expression
+                  (expr_term
+                    (literal_value
+                      (numeric_literal))))))))))))
