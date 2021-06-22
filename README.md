@@ -16,4 +16,12 @@ from the company on this project.
 
 The grammar parses most HCL files I've thrown at it. It doesn't handle
 interpolations yet (in strings or heredocs) and instead treats the full string
-as just a string.
+as just a string. This is the biggest feature missing at the moment. Regardless,
+I am using this day to day for general HCL highlighting.
+
+## Screenshot
+
+The screenshot shows a Terraform example syntax highlighted.
+
+![Screenshot](https://user-images.githubusercontent.com/1299/122850915-e442bf00-d2c2-11eb-85a1-a92ce9ac0644.png)
+
