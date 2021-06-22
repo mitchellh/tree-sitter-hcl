@@ -736,6 +736,10 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "escape_sequence",
     "named": true
   },

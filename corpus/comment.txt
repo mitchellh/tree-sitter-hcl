@@ -1,0 +1,49 @@
+================================================================================
+one line command
+================================================================================
+
+// foo
+resource "aws_instance" "foo" {
+  a = b // bar
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (body
+    (block
+      (identifier)
+      (string_literal
+        (quoted_template))
+      (string_literal
+        (quoted_template))
+      (body
+        (attribute
+          (identifier)
+          (expression
+            (expr_term
+              (variable_expr
+                (identifier))))
+          (comment))))))
+
+================================================================================
+multi-line-comment
+================================================================================
+
+/*
+resource aws_instance foo {}
+*/
+a = b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (body
+    (attribute
+      (identifier)
+      (expression
+        (expr_term
+          (variable_expr
+            (identifier)))))))
