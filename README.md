@@ -1,5 +1,8 @@
 # tree-sitter-hcl
 
+**Update: check out this more full-featured tree-sitter-hcl plugin here:**
+https://github.com/MichaHoffmann/tree-sitter-hcl
+
 [tree-sitter][] grammar for [HCL (HashiCorp Configuration Language)][hcl] files.
 HCL is the configuration format used by projects such as Terraform, Vault,
 Waypoint, Nomad, etc.
